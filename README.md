@@ -12,6 +12,10 @@
 
 ![10134_900](https://user-images.githubusercontent.com/53271533/230759173-9c581242-2a73-4d21-982b-1b2f6328170c.jpg)
 
+Вариант внешнего дизайна.
+
+![Image1](https://user-images.githubusercontent.com/53271533/230766903-2106fb32-661f-48fb-9262-43a42c33f918.jpg)
+
 ## STGM - Генератор SCCP-трафика (2008)
 - Java/SWT/JNI/C++
 - Официально для Sitronics
@@ -151,8 +155,7 @@ GUI-монитор профайлера производительности. П
 
 
 
-1
-![Image1](https://user-images.githubusercontent.com/53271533/230766903-2106fb32-661f-48fb-9262-43a42c33f918.jpg)
+
 
 4
 ![unnamed](https://user-images.githubusercontent.com/53271533/230766907-140462b0-5087-468d-8e24-02e7a0b23d05.png)
