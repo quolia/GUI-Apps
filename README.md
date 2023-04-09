@@ -148,3 +148,41 @@ GUI-монитор профайлера производительности. П
 
 30
 ![7202_900](https://user-images.githubusercontent.com/53271533/230759211-c4796eee-48a0-4c7b-998c-83d142fb5d7d.jpg)
+
+
+
+1
+![Image1](https://user-images.githubusercontent.com/53271533/230766903-2106fb32-661f-48fb-9262-43a42c33f918.jpg)
+
+4
+![unnamed](https://user-images.githubusercontent.com/53271533/230766907-140462b0-5087-468d-8e24-02e7a0b23d05.png)
+
+5
+![unnamed (1)](https://user-images.githubusercontent.com/53271533/230766908-9425d12f-824a-4c8c-aa3d-e4c7d4757454.png)
+
+6
+![unnamed (10)](https://user-images.githubusercontent.com/53271533/230766910-b451bfbb-caa2-4975-87a7-dacedf362fd7.png)
+
+7
+![unnamed (2)](https://user-images.githubusercontent.com/53271533/230766911-917aa922-d960-4237-8d42-c9930974a891.png)
+
+8
+![unnamed (3)](https://user-images.githubusercontent.com/53271533/230766912-0a09f27f-e36d-4812-ae61-386ef0cb9931.png)
+
+9
+![unnamed (4)](https://user-images.githubusercontent.com/53271533/230766913-8942f93f-fc28-402d-97ba-e8f9df832ff8.png)
+
+10
+![unnamed (5)](https://user-images.githubusercontent.com/53271533/230766914-756dc3bc-2304-4567-945e-26a1cea004d4.png)
+
+11
+![unnamed (6)](https://user-images.githubusercontent.com/53271533/230766917-7f6d56bd-e678-4079-a491-5816c57226f9.png)
+
+12
+![unnamed (7)](https://user-images.githubusercontent.com/53271533/230766919-51fddaae-5e88-4176-a4c0-ec8a80294103.png)
+
+13
+![unnamed (8)](https://user-images.githubusercontent.com/53271533/230766921-c406f8b1-22d1-4bb6-8337-2fe3e426e0e1.png)
+
+14
+![unnamed (9)](https://user-images.githubusercontent.com/53271533/230766922-d114597b-ab64-4865-9937-b61a3d9ce09d.png)
