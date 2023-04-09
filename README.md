@@ -1,5 +1,5 @@
 # GUI-Apps
-Some of my GUI applications description.
+Примеры моих GUI-приложений.
 
 
 1
@@ -20,6 +20,7 @@ Some of my GUI applications description.
 
 ### GUI-приложение, использующее библиотеку Fidel.
 - Visual Basic
+
 ![1201_800](https://user-images.githubusercontent.com/53271533/230759184-17729137-8189-4da5-aa7a-f342598c4230.jpg)
 
 ### Еще одно GUI-приложения для демонстрации расчета часа наибольшей нагрузки. 
@@ -30,24 +31,32 @@ Some of my GUI applications description.
 ![1653_800](https://user-images.githubusercontent.com/53271533/230759187-c33ec6c7-61e4-409a-b6d2-560f49d7bfc2.jpg)
 
 9
+### Диспетчирование вызовов (2001)
+Программа лабораторной работы для обучения студентов СибГУТИ.
+- Delphi
+ 
 ![1910_900](https://user-images.githubusercontent.com/53271533/230759188-1b2a7f99-425b-4627-ace3-8729815325a9.jpg)
 
-10
 ![2216_800](https://user-images.githubusercontent.com/53271533/230759189-39e8a260-3860-4001-9803-27e82e825c9f.jpg)
 
-11
 ![2305_800](https://user-images.githubusercontent.com/53271533/230759191-3aedb171-e681-451b-86d0-06b5b4747248.jpg)
 
 12
+### Шифрование данных (2002)
+Программа лабораторной работы для обучения студентов СибГУТИ.
+- Delphi
+
 ![2715_900](https://user-images.githubusercontent.com/53271533/230759192-32b359d6-2c92-4a3e-affe-df551ad77a17.jpg)
 
-13
 ![2899_900](https://user-images.githubusercontent.com/53271533/230759193-03a8a4b4-9ccb-42d4-8b6c-ccdaa69cacc0.jpg)
 
-14
 ![3140_800](https://user-images.githubusercontent.com/53271533/230759194-591b742e-3af7-49c6-98c6-a0f9cdde0caa.jpg)
 
 15
+### Activity Checker (2006)
+Утилита для контроля доступности физических модулей оборудования Sitronics. 
+Программа использует обычный протокол пингования и может использования для контроля любых IP-узлов, поддерживающих пингование.
+
 ![3366_800](https://user-images.githubusercontent.com/53271533/230759196-738dddef-1da5-41af-a8fb-f70b429d9165.jpg)
 
 16
