@@ -66,7 +66,7 @@
 ![3988_900](https://user-images.githubusercontent.com/53271533/230759198-7d3d2b22-633a-48d4-9a92-fafefc4aaf6f.jpg)
 
 18
-## Nasca Vision
+## Nasca Vision (2006)
 Программа для визуализации и анализа логов внутреннего трафика сообщений между модулями ПО компании Strom Telecom/Sitronics.
 
 ![4348_900](https://user-images.githubusercontent.com/53271533/230759199-8d3106dd-e54f-4e04-98f9-ebe817b97baa.jpg)
@@ -118,23 +118,23 @@
 ![7202_900](https://user-images.githubusercontent.com/53271533/230759211-c4796eee-48a0-4c7b-998c-83d142fb5d7d.jpg)
 
 31
-## Монитор ресурсов и состояний генератора мобильного трафика (MCGM)
+## MCGM - Монитор ресурсов и состояний генератора мобильного трафика (2006)
 ![7478_800](https://user-images.githubusercontent.com/53271533/230759212-2564d52c-5baa-4519-9da7-4c991c06734b.jpg)
 
 ![7760_900](https://user-images.githubusercontent.com/53271533/230759214-65d0f3fa-ec67-42bf-b54c-42c55332afdd.jpg)
 
 33
-## Profiler Monitor
+## Profiler Monitor (2007)
 ![8003_800](https://user-images.githubusercontent.com/53271533/230759215-a1b473d5-fc27-4e61-8261-ac062852a8c8.jpg)
 
 35
-## Генератор SCCP-трафика (STGM)
+## STGM - Генератор SCCP-трафика (2008)
 ![8358_800](https://user-images.githubusercontent.com/53271533/230759219-380f174f-2e6c-4492-8500-8e3de8d6affc.jpg)
 
 ![8602_900](https://user-images.githubusercontent.com/53271533/230759220-c604d034-0031-4066-9ed6-cffdeb4e5ba2.jpg)
 
 39
-## Bomber Monitor
+## Bomber Monitor (2007)
 Монитор одного из внутренних протоколов компании.
 
 ![9540_800](https://user-images.githubusercontent.com/53271533/230759225-20b01b77-fa8c-49b4-8ea7-7188d2420292.jpg)
