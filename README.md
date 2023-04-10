@@ -64,11 +64,8 @@ HTTP-интерфейс для управления и наблюдения за
 
 ![unnamed (9)](https://user-images.githubusercontent.com/53271533/230766922-d114597b-ab64-4865-9937-b61a3d9ce09d.png)
 
-Пример XML-сценария (частично).
+Пример XML-сценария:
 
-![unnamed (7)](https://user-images.githubusercontent.com/53271533/230766919-51fddaae-5e88-4176-a4c0-ec8a80294103.png)
-
-'''
     <Scenario Name="CAP_CALL" StateHolder="CAP::GetSession">
       <State Name="Begin">
         <OnState>
@@ -119,7 +116,7 @@ HTTP-интерфейс для управления и наблюдения за
         </Gets>
       </State>
     </Scenario>
-'''
+
 
 
 ## Janova MMTP-терминал (2008)
