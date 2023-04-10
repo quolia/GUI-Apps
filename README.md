@@ -81,17 +81,17 @@ HTTP-интерфейс для управления и наблюдения за
           <Do Send="CAP::InitialDP_CALL"
                         SK="117"
                         EventType="const::Event_AnalyzedInformation"
-                        CallingNumber="123456789"
+                        CallingNumber="PA::CallingNumber"
                         CallingNP="1"
               
                         RedirectOnConnect="1"
-                        CalledNumber="123456789"
+                        CalledNumber="PA::CalledNumber"
                         CalledNP="1"
                         CalledINN="0"
                         CalledNAI="4"
               
-                        IMSI="123456789012345"
-                        CallReferenceNumber="1"
+                        IMSI="PA::IMSI"
+                        CallReferenceNumber="PA::CallReferenceNumber"
                         VLRNumber="79168999903abcde"
                         MSCAddress="79168999904abcde"
                         MSCAddressType="0"
@@ -101,7 +101,13 @@ HTTP-интерфейс для управления и наблюдения за
                         AgeOfLocationInformation="0"
                         iPSSPCap="01"
                         TimeAndZone="Now" />
-          <Do Timer="120" />
+          <Do State="InitialWait" />
+        </OnState>
+      </State>
+
+      <State Name="InitialWait">
+        <OnState>
+          <Do Timer="30" />
         </OnState>
         <OnTimer>
           <Do Status="Unsucc" />
@@ -109,10 +115,140 @@ HTTP-интерфейс для управления и наблюдения за
           <Do Action="End" />
         </OnTimer>
         <Gets>
+          <Get Msg="TCAP::ContinueIndication">
+          </Get>
+          <Get Msg="CAP::RequestReportCALLEvent">
+            <Do Action="Var" AnswerMessageType="CAP::MessageTypeFromMonitorMode(CAP::MonitorMode(const::Event_Answer))" />
+            <Do Action="Var" DisconnectMessageType="CAP::MessageTypeFromMonitorMode(CAP::MonitorMode(const::Event_Disconnect))" />
+          </Get>
+          <Get Msg="CAP::ContinueCALL">
+            <Do Send="CAP::EventReportCALL" EventType="const::Event_Answer" MessageType="var::AnswerMessageType" />
+            <Do Send="TCAP::ContinueRequest" />
+            <Do State="Continue" />
+          </Get>
+
+          <!-- A new call must be started (new IDP with Destination number, redirecting info, original party number, redirect) -->
+          <Get Msg="CAP::ConnectCALL"> 
+            <Do Action="Var" GlobalCorrelator="var::LocalCorrelator" />
+            <Do Action="Var" HardLimit="PA::HardLimit" TraceChange="All" />
+            <Do CallBack="CB_CAP_CALL_REDIRECT" If="PA::NotHardLimit" />
+            <Do State="HardLimit" If="var::HardLimit" />
+          </Get>
+
+          <!-- A new call must be started as temporary connection to an assistant -->
+          <Get Msg="CAP::EstablishTemporaryConnection">
+            <Do Action="Var" LocalCorrelator="PA::Current" If="var::LocalCorrelator == -1" />
+            <Do Action="Var" GlobalCorrelator="var::LocalCorrelator" />
+            <Do Action="Var" HardLimit="PA::HardLimit" TraceChange="All" />
+            <Do CallBack="CB_CAP_REQUEST_ASSISTANT" If="PA::NotHardLimit" />
+            <Do State="HardLimit" If="var::HardLimit" />
+          </Get>
+
           <Get Msg="TCAP::EndIndication">
+          </Get>
+          
+          <Get Msg="CAP::ApplyChargingCALL">
+          </Get>
+          
+          <Get OnGet="TCAP::PAbortIndication">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" Status="Unsucc" />
+            <Do Action="End" />
+          </Get>
+          
+          <Get Msg="CAP::ReleaseCALL" Cause="16">
+            <Do Action="TCAP::EndDialogue" />
             <Do Action="PA::CallEnd" />
             <Do Action="End" />
-          </Get>  
+          </Get>
+
+          <Get Msg="CAP::ReleaseCALL" Cause="31">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" />
+            <Do Action="End" />
+          </Get>
+
+          <Get Msg="CAP::ReleaseCALL">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" Status="Unsucc" />
+            <Do Action="End" />
+          </Get>
+          
+          <Get Msg="TCAP::LCancelIndication">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" Status="Unsucc" />
+            <Do Action="End" />
+          </Get>
+
+          <Get CallBack="CORRELATOR_END" Parameter="var::LocalCorrelator">
+            <Do Trace="CORRELATOR RECEIVED {1}" Param1="var::LocalCorrelator" />
+          </Get>
+        </Gets>
+      </State>
+
+      <State Name="HardLimit">
+        <OnState>
+          <Do Trace="HARD LIMIT REACHED. NEW CALL IS IMPOSSIBLE" />
+          <Do CallBack="CORRELATOR_END" Parameter="var::LocalCorrelator" />
+        </OnState>
+        <Gets>
+          <Get CallBack="CORRELATOR_END" Parameter="var::LocalCorrelator">
+            <Do Trace="CORRELATOR RECEIVED {1}" Param1="var::LocalCorrelator" />
+          </Get>
+        </Gets>
+      </State>
+
+      <State Name="Continue">
+        <OnState>
+          <Do Timer="PA::CallTime" /> <!-- CALL TIME IN SECONDS --> <!-- TraceTime="10" -->
+        </OnState>
+        <OnTimer>
+          <Do Send="CAP::ApplyChargingReportCALL" CallActive="0" InvokeId="1" />
+          <Do Send="TCAP::ContinueRequest" />
+          <Do Send="CAP::EventReportCALL" InvokeId="2" EventType="const::Event_Disconnect" MessageType="var::DisconnectMessageType"/>          
+          <Do Send="TCAP::ContinueRequest" />
+        </OnTimer>
+        <Gets>
+          <Get Msg="CAP::ConnectCALL">
+            <Do Send="CAP::EventReportCALL" EventType="const::Event_Answer" />
+            <Do Send="TCAP::ContinueRequest" />
+          </Get>
+          <Get Msg="CAP::ContinueCALL">
+            <Do Send="CAP::EventReportCALL" EventType="const::CALL_EventType_Answer" MessageType="var::AnswerMessageType"/>
+            <Do Send="TCAP::ContinueRequest" />
+          </Get>
+          <Get Msg="CAP::ReleaseCALL" Cause="16">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" />
+            <Do Action="End" />
+          </Get>
+          <Get Msg="CAP::ReleaseCALL" Cause="31">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" />
+            <Do Action="End" />
+          </Get>
+          <Get Msg="CAP::ReleaseCALL">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" Status="Unsucc" />
+            <Do Action="End" />
+          </Get>
+
+          <Get Msg="TCAP::ContinueIndication">
+          </Get>
+          
+          <Get Msg="TCAP::LCancelIndication">
+            <Do Action="TCAP::EndDialogue" />
+            <Do Action="PA::CallEnd" Status="Unsucc" />
+            <Do Action="End" />
+          </Get>
+          
+          <Get Msg="TCAP::EndIndication">
+          </Get>
+
+          <Get Msg="CAP::ApplyChargingCALL">
+            <Do Send="CAP::ApplyChargingReportCALL" CallActive="0" InvokeId="1" />
+            <Do Send="TCAP::ContinueRequest" />
+          </Get>
         </Gets>
       </State>
     </Scenario>
