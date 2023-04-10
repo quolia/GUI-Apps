@@ -68,6 +68,60 @@ HTTP-интерфейс для управления и наблюдения за
 
 ![unnamed (7)](https://user-images.githubusercontent.com/53271533/230766919-51fddaae-5e88-4176-a4c0-ec8a80294103.png)
 
+'''
+    <Scenario Name="CAP_CALL" StateHolder="CAP::GetSession">
+      <State Name="Begin">
+        <OnState>
+          <Do Action="PA::CallBegin" Context="var::GlobalCorrelator" />
+
+          <Do Action="CAP::AssignTraceId" If="var::GlobalCorrelator == -1" />
+          <Do Action="CAP::SetTraceId" />
+
+          <Do Action="Var" LocalCorrelator="if (var::GlobalCorrelator == -1, PA::Current, var::GlobalCorrelator)" TraceChange="All" />
+          <Do Action="Var" GlobalCorrelator="-1" TraceChange="All" />
+
+          <Do Action="CAP::CreateDialoguePortion" Name="AppContext" AppContext="0.4.0.0.1.0.50.1" />
+          <Do Send="CAP::InitialDP_CALL"
+                        SK="117"
+                        EventType="const::Event_AnalyzedInformation"
+                        CallingNumber="123456789"
+                        CallingNP="1"
+              
+                        RedirectOnConnect="1"
+                        CalledNumber="123456789"
+                        CalledNP="1"
+                        CalledINN="0"
+                        CalledNAI="4"
+              
+                        IMSI="123456789012345"
+                        CallReferenceNumber="1"
+                        VLRNumber="79168999903abcde"
+                        MSCAddress="79168999904abcde"
+                        MSCAddressType="0"
+                        MSCAddressPlan="0"
+                        CellGlobalIdOrServiceAreaId="00 00 00 02 4e c7 00"
+                        DialoguePortion="AppContext"
+                        AgeOfLocationInformation="0"
+                        iPSSPCap="01"
+                        TimeAndZone="Now" />
+          <Do Timer="120" />
+        </OnState>
+        <OnTimer>
+          <Do Status="Unsucc" />
+          <Do Action="PA::CallEnd" Status="Timeout" />
+          <Do Action="End" />
+        </OnTimer>
+        <Gets>
+          <Get Msg="TCAP::EndIndication">
+            <Do Action="PA::CallEnd" />
+            <Do Action="End" />
+          </Get>  
+        </Gets>
+      </State>
+    </Scenario>
+'''
+
+
 ## Janova MMTP-терминал (2008)
 Кроссплатформенный GUI-терминал для управления модулями оборудования сети мобильной связи компании Sitronics. Для внутреннего использования в компании.
 Здесь я разрабатывал архитектуру, внешний дизайн и написал часть кода.
